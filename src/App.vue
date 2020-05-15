@@ -1,9 +1,17 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <Layout></Layout>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-export default {};
+import Layout from "./components/Layout/Layout";
+export default {
+  components: {
+    Layout: Layout
+  }
+};
 </script>
 
 <style>

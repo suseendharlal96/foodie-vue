@@ -56,7 +56,12 @@
                 Grand Total:
                 <span class="spn">{{"\u20B9"}}{{totalPrice}}</span>
               </p>
-              <button :disabled="true" id="pay">Order</button>
+              <button
+                :disabled="totalPrice>0?false:true"
+                :style=" [totalPrice>0?{cursor:'pointer'}:{cursor:'no-drop'}]"
+                @click="placeOrder"
+                id="pay"
+              >Order</button>
               <button id="pay" @click="navToHotel">Back to Hotels</button>
             </div>
           </div>
@@ -118,7 +123,10 @@ export default {
       this.total();
     },
     navToHotel() {
-      this.$router.push('/');
+      this.$router.push("/");
+    },
+    placeOrder() {
+      this.$router.push("/checkout");
     }
   },
   created() {
