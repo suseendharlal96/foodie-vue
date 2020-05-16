@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "vue": "^2.5.11",
-    "vue-router": "^3.1.6"
+    "vue-router": "^3.1.6",
+    "vuelidate": "^0.7.5",
+    "vuex": "^3.4.0"
   },
   "browserslist": [
     "> 1%",

@@ -126,6 +126,24 @@ export default {
       this.$router.push("/");
     },
     placeOrder() {
+      console.log(this.newList);
+      const a = this.newList[0];
+      const obj = {
+        menu: [],
+        total: this.totalPrice
+      };
+      for (let key in a) {
+        if (key !== "menu") {
+          obj[key] = a[key];
+        }
+      }
+      a.menu.map(m => {
+        if (m.quantity > 0) {
+          obj.menu.push(m);
+        }
+      });
+      console.log(obj);
+      this.$store.commit("purchaseData", obj);
       this.$router.push("/checkout");
     }
   },

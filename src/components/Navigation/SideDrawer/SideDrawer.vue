@@ -24,7 +24,8 @@ export default {
   },
   components: {
     NavigationItems: NavigationItems,
-    Backdrop: Backdrop
+    Backdrop: Backdrop,
+    Logo: Logo
   }
 };
 </script>
