@@ -1,9 +1,135 @@
 <template>
-  <div>form</div>
+  <div class="ContactData">
+    <div class="Input">
+      <input type="text" class="InputElement" placeholder="Name" v-model="name" />
+      <input type="text" class="InputElement" placeholder="Street" v-model="street" />
+      <input type="text" class="InputElement" placeholder="Pincode" v-model="zipcode" />
+      <input type="text" class="InputElement" placeholder="Country" v-model="country" />
+      <input type="text" class="InputElement" placeholder="Email" v-model="email" />
+      <select v-model="deliverymode">
+        <option value disabled>Delivery Mode</option>
+        <option value="fastest">Fastest</option>
+        <option value="cheapest">Cheapest</option>
+      </select>
+    </div>
+    <button
+      class="btn btn-success"
+      :disabled="loader"
+      @click="placeOrder"
+    >{{loader?'Placing Order..':'Place Order'}}</button>
+  </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["orderData"],
+  data() {
+    return {
+      name: "",
+      street: "",
+      zipcode: "",
+      country: "",
+      email: "",
+      deliverymode: ""
+    };
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.getLoaders;
+    }
+  },
+  methods: {
+    placeOrder() {
+      this.$store.commit("setLoader", true);
+      const order = {
+        orderData: this.orderData[0],
+        customerDetails: {
+          name: this.name,
+          street: this.street,
+          zipCode: this.zipcode,
+          country: this.country,
+          email: this.email,
+          deliverymode: this.deliverymode
+        },
+        orderDate: new Date()
+      };
+      const token = this.$store.getters.getAuthData.idToken;
+      if (token) {
+        this.$http
+          .post(
+            "https://foodie-vue.firebaseio.com/orders.json?auth=" + token,
+            order
+          )
+          .then(
+            response => {
+              this.$store.commit("setLoader", false);
+              console.log(response);
+              this.$router.push("/success");
+            },
+            err => {
+              this.$store.commit("setLoader", false);
+              console.log(err);
+            }
+          );
+      }
+      console.log(order);
+    }
+  }
+};
 </script>
+<style >
+.ContactData {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.Input {
+  display: block;
+}
+
+@media (min-width: 600px) {
+  .ContactData {
+    width: 450px;
+  }
+}
+.Input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.Label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.InputElement {
+  outline: none;
+  border: 1px solid #ccc;
+  background-color: white;
+  font: inherit;
+  padding: 6px 10px;
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.InputElement:focus {
+  outline: none;
+  background-color: #ccc;
+}
+
+.Invalid {
+  border: 1px solid red;
+  background-color: #fda49a;
+}
+</style>
 // import React, { useState, useEffect } from "react";
 // import { connect } from "react-redux";
 

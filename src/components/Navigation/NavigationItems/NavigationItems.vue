@@ -3,13 +3,31 @@
     <router-link tag="li" class="NavigationItem" active-class="active" to="/" exact>
       <a>Hotels</a>
     </router-link>
-    <router-link tag="li" class="NavigationItem" active-class="active" to="/orders">
+    <router-link
+      v-if="authData.email"
+      tag="li"
+      class="NavigationItem"
+      active-class="active"
+      to="/orders"
+    >
       <a>Orders</a>
     </router-link>
-    <router-link tag="li" class="NavigationItem" active-class="active" to="/logout">
+    <router-link
+      v-if="authData.email"
+      tag="li"
+      class="NavigationItem"
+      active-class="active"
+      to="/logouts"
+    >
       <a>Logout</a>
     </router-link>
-    <router-link tag="li" class="NavigationItem" active-class="active" to="/auth">
+    <router-link
+      v-if="!authData.email"
+      tag="li"
+      class="NavigationItem"
+      active-class="active"
+      to="/auth"
+    >
       <a>SignIn/Signup</a>
     </router-link>
     <button
@@ -24,7 +42,13 @@
   </ul>
 </template>
 <script>
-export default {};
+export default {
+  computed: {
+    authData() {
+      return this.$store.getters.getAuthData;
+    }
+  }
+};
 </script>
 <style>
 .NavigationItems {
@@ -57,12 +81,6 @@ export default {};
   display: block;
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
-  /* color: #40a4c8; */
-}
-
 @media (min-width: 500px) {
   .NavigationItem {
     margin: 0;
@@ -72,7 +90,7 @@ export default {};
     align-items: center;
   }
 
-  .NavigationItem a{
+  .NavigationItem a {
     color: white;
     height: 100%;
     padding: 16px 10px;

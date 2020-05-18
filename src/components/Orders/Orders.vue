@@ -61,7 +61,7 @@
                 :style=" [totalPrice>0?{cursor:'pointer'}:{cursor:'no-drop'}]"
                 @click="placeOrder"
                 id="pay"
-              >Order</button>
+              >{{idToken?'Order':'Login to Order'}}</button>
               <button id="pay" @click="navToHotel">Back to Hotels</button>
             </div>
           </div>
@@ -79,6 +79,7 @@ export default {
     return {
       list: data,
       newList: null,
+      idToken: null,
       totalPrice: 0
     };
   },
@@ -144,10 +145,15 @@ export default {
       });
       console.log(obj);
       this.$store.commit("purchaseData", obj);
-      this.$router.push("/checkout");
+      if (this.idToken) {
+        this.$router.push("/checkout");
+      } else {
+        this.$router.push("/auth");
+      }
     }
   },
   created() {
+    this.idToken = this.$store.getters.getAuthData.idToken;
     console.log(this.$route.params.hotel);
     const hotelName = this.$route.params.hotel;
     const List = this.list.filter(rec => rec.name === hotelName);
@@ -279,7 +285,6 @@ body {
 }
 
 .btn {
-  width: 80px;
   padding: 7px;
 }
 
