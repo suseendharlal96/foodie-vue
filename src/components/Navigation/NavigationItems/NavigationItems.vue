@@ -17,7 +17,7 @@
       tag="li"
       class="NavigationItem"
       active-class="active"
-      to="/logouts"
+      to="/logout"
     >
       <a>Logout</a>
     </router-link>
@@ -38,11 +38,28 @@
            float: 'right',
            color: ' var(--primaryText)',
            backgroundColor: 'var(--primaryBg)'}"
-    >Theme</button>
+      @click="changeTheme"
+    >{{theme==='light'?'Dark Mode':'Light Mode'}}</button>
   </ul>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      theme: "light"
+    };
+  },
+  methods: {
+    changeTheme() {
+      const activetheme = this.theme === "light" ? "dark" : "light";
+      this.theme = activetheme;
+      document.documentElement.classList.add("color-theme-in-transition");
+      document.documentElement.setAttribute("data-theme", activetheme);
+      window.setTimeout(() => {
+        document.documentElement.classList.remove("color-theme-in-transition");
+      }, 1000);
+    }
+  },
   computed: {
     authData() {
       return this.$store.getters.getAuthData;

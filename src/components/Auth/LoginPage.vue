@@ -100,6 +100,14 @@ export default {
         }
       );
     }
+  },
+  created() {
+    const authData = {
+      email: null,
+      localId: null,
+      idToken: null
+    };
+    this.$store.commit("setAuthData", authData);
   }
 };
 </script>

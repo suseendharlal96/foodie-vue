@@ -58,7 +58,7 @@
               </p>
               <button
                 :disabled="totalPrice>0?false:true"
-                :style=" [totalPrice>0?{cursor:'pointer'}:{cursor:'no-drop'}]"
+                :style=" [totalPrice>0 || loader?{cursor:'pointer'}:{cursor:'no-drop'}]"
                 @click="placeOrder"
                 id="pay"
               >{{idToken?'Order':'Login to Order'}}</button>
@@ -82,6 +82,11 @@ export default {
       idToken: null,
       totalPrice: 0
     };
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.getLoaders;
+    }
   },
   methods: {
     addHandler(price, id) {
@@ -127,6 +132,7 @@ export default {
       this.$router.push("/");
     },
     placeOrder() {
+      this.$store.commit("setLoader", true);
       console.log(this.newList);
       const a = this.newList[0];
       const obj = {
@@ -146,8 +152,10 @@ export default {
       console.log(obj);
       this.$store.commit("purchaseData", obj);
       if (this.idToken) {
+        this.$store.commit("setLoader", false);
         this.$router.push("/checkout");
       } else {
+        this.$store.commit("setLoader", false);
         this.$router.push("/auth");
       }
     }
@@ -309,7 +317,7 @@ body {
 #right {
   font-size: 23px;
   background: var(--primaryBg);
-  box-shadow: 0px 0px 15px 6px #283e530c;
+  box-shadow: 0px 0px 15px 6px var(--primaryText);
 }
 
 #pitem {

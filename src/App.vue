@@ -7,6 +7,7 @@
 
 <script>
 import Layout from "./components/Layout/Layout";
+import "./theme.css";
 export default {
   components: {
     Layout: Layout
@@ -15,4 +16,7 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: var(--primaryBg);
+}
 </style>

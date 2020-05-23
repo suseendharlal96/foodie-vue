@@ -5,6 +5,12 @@
 export default {
   created() {
     console.log(this.$store.getters.getAuthData.email);
+    const authData = {
+      email: null,
+      localId: null,
+      idToken: null
+    };
+    this.$store.commit("setAuthData", authData);
     this.$router.push("/");
   }
 };

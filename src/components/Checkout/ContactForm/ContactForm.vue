@@ -5,7 +5,7 @@
       <input type="text" class="InputElement" placeholder="Street" v-model="street" />
       <input type="text" class="InputElement" placeholder="Pincode" v-model="zipcode" />
       <input type="text" class="InputElement" placeholder="Country" v-model="country" />
-      <input type="text" class="InputElement" placeholder="Email" v-model="email" />
+      <input type="text" class="InputElement" readonly placeholder="Email" v-model="email" />
       <select v-model="deliverymode">
         <option value disabled>Delivery Mode</option>
         <option value="fastest">Fastest</option>
@@ -28,7 +28,7 @@ export default {
       street: "",
       zipcode: "",
       country: "",
-      email: "",
+      email: this.$store.getters.getAuthData.email,
       deliverymode: ""
     };
   },
@@ -50,7 +50,8 @@ export default {
           email: this.email,
           deliverymode: this.deliverymode
         },
-        orderDate: new Date()
+        orderDate: new Date(),
+        userId: this.$store.getters.getAuthData.localId
       };
       const token = this.$store.getters.getAuthData.idToken;
       if (token) {

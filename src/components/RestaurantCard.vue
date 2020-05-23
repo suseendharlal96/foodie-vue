@@ -3,7 +3,7 @@
     <center>
       <img :src="thumbnailImage" :alt="name" />
     </center>
-    <h3 id="hotel-title">{{name}}</h3>
+    <h3>{{name}}</h3>
     <p>{{cuisines}}</p>
     <p>Rating: {{"★".repeat(rating)}}</p>
     <p>Reviews: {{reviews}}</p>
@@ -21,4 +21,7 @@ export default {
 };
 </script>
 <style scoped>
+h3 {
+  color: var(--primaryText);
+}
 </style>

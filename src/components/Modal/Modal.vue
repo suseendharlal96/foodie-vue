@@ -5,23 +5,21 @@
       class="Modal"
       :style="[show?{transform:'translateY(0)',opacity:'1'}:{transform:'translateY(-100vh)',opacity:'0'} ]"
     >
-      <ContactForm :orderData="orderData"></ContactForm>
+      <slot></slot>
     </div>
   </div>
 </template>
 <script>
 import Backdrop from "../Backdrop/Backdrop";
-import ContactForm from "../Checkout/ContactForm/ContactForm";
 export default {
-  props: ["show",'orderData'],
+  props: ["show"],
   methods: {
     closeModal() {
       this.$emit("closeModal");
     }
   },
   components: {
-    Backdrop: Backdrop,
-    ContactForm: ContactForm
+    Backdrop: Backdrop
   }
 };
 </script>
