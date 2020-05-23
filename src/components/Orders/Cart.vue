@@ -1,10 +1,10 @@
 <template>
   <div>
-    <p id="pitem">
+    <p id="pitem" :style="{color:'var(--primaryButtonText)'}">
       {{name}}
       <br />
-      <strong>Price: {{"\u20B9"}} {{price}}(1)</strong>
-      <strong>Total: {{"\u20B9"}} {{price * quantity}}</strong>
+      <strong :style="{color:'var(--primaryButtonText)'}">Price: {{"\u20B9"}} {{price}}(1)</strong>
+      <strong :style="{color:'var(--primaryButtonText)'}">Total: {{"\u20B9"}} {{price * quantity}}</strong>
       <br />
       <br />
       <input class="ip" type="button" @click="decrement" value="-" />

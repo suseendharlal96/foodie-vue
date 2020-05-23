@@ -79,6 +79,7 @@
           <Order :key="index" :orderData="item"></Order>
         </template>
       </template>
+      <p v-else :style="{ color: 'var(--primaryText)' }">Loading...</p>
     </div>
   </div>
 </template>

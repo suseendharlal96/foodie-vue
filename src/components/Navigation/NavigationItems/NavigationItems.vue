@@ -33,6 +33,7 @@
     <button
       :style="{
            outline: 'none',
+           cursor:'pointer',
            borderRadius: '15px',
            padding: '9px',
            float: 'right',

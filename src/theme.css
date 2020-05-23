@@ -15,7 +15,7 @@ html {
   --primaryText: #212121;
   --secondaryText: #7b7b7b;
 
-  --primaryButtonText: #fff;
+  --primaryButtonText: #000000;
 
   --primaryBorderBg: #efefef;
 
@@ -30,7 +30,7 @@ html[data-theme="dark"] {
   --primaryBg: black;
   --primaryText: rgb(222, 184, 135);
   --secondaryText: rgba(255, 255, 255, 0.6);
-  --primaryButtonText: #fff;
+  --primaryButtonText: #ffffff;
   --primaryBorderBg: #292929;
   --activeSelectionBg: rgba(0, 0, 0, 0.18);
   --primaryShadowBg: rgba(8, 8, 8, 0.7);

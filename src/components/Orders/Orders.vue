@@ -9,7 +9,7 @@
           </template>
           <template v-for="(item, index) in newList">
             <h5 class="aname" :key="index + 'address'">
-              <i class="fa fa-map-marker" :style="{ fontSize: 18 }"></i>
+              <i class="fa fa-map-marker" :style="{ fontSize: '18' }"></i>
               {{ item.address}}
             </h5>
           </template>
@@ -337,6 +337,7 @@ body {
 
 .spn {
   margin-left: 10px;
+  color: var(--primaryText);
 }
 #tx-w {
   height: 30px;

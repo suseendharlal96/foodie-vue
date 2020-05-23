@@ -58,9 +58,4 @@ export default {
 .Close {
   transform: translateX(-100%);
 }
-
-.Logo {
-  height: 11%;
-  margin-bottom: 32px;
-}
 </style>

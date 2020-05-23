@@ -1,5 +1,5 @@
 <template>
-  <div class="cart" @click="navigate">
+  <div class="cart" @click="navigate" :title="name">
     <center>
       <img :src="thumbnailImage" :alt="name" />
     </center>

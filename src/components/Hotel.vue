@@ -109,11 +109,17 @@ export default {
 }
 
 .cart {
+  cursor: pointer;
   margin: 20px;
+  width: min-content;
   padding: 10px;
   border: 1px solid var(--primaryText);
   background: var(--primaryBg);
-  box-shadow: 0px 0px 15px 6px #283e530c;
+  box-shadow: 0px 0px 15px 6px var(--primaryText);
+}
+.cart:hover {
+  border: 1px solid #fd0e35;
+  box-shadow: 0px 0px 15px 6px red;
 }
 
 .name {
@@ -169,7 +175,6 @@ div.cart p {
 }
 
 div.cart p:hover {
-  color: var(--primaryText);
   text-overflow: clip;
   white-space: normal;
   word-break: break-all;
