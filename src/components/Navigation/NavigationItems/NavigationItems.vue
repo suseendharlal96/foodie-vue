@@ -4,7 +4,7 @@
       <a>Hotels</a>
     </router-link>
     <router-link
-      v-if="authData.email"
+      v-show="authData.email"
       tag="li"
       class="NavigationItem"
       active-class="active"
@@ -13,7 +13,7 @@
       <a>Orders</a>
     </router-link>
     <router-link
-      v-if="authData.email"
+      v-show="authData.email"
       tag="li"
       class="NavigationItem"
       active-class="active"
@@ -22,7 +22,7 @@
       <a>Logout</a>
     </router-link>
     <router-link
-      v-if="!authData.email"
+      v-show="!authData.email"
       tag="li"
       class="NavigationItem"
       active-class="active"
